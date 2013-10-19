@@ -8,8 +8,9 @@ Requirements
 
 This puppet module assumes that you have:
 
-* Working apache with a puppet service
-* Working python 2.7 and pip
+* A RabbitMQ broker that we can use for Celery tasks
+* Working apache on localhost with a puppet service we can notify
+* Working python 2.7 and pip on localhost
 * Working postgres with a username, password, and database for mercy to use
 
 Aside from that, the module has no dependencies.
@@ -17,9 +18,16 @@ Aside from that, the module has no dependencies.
 Usage
 =========
 
-    class { 'mercy::application':
+    class { 'mercy':
+        # ---- These are required, they have no defaults
         environment    => 'dev|production',
-        ensure         => 'absent|latest|MAJOR-MINOR',
+        version        => 'absent|latest|MAJOR-MINOR',
+        ensure         => 'running|stopped'.
+        rabbitmq_uri   => 'RABBITMQ_BROKER_URI',
+        # ---- Everything below is optional
+	rabbitmq_user  => 'mercy',
+	rabbitmq_pw    => 'mercy',
+	rabbitmq_vhost => 'mercy',
         vhost_dir      => '/etc/apache/httpd/conf.d',
         apache_service => 'httpd',
         postgres_uri   => 'localhost',
