@@ -24,3 +24,5 @@ The Idea
 * Patient: "That's so great! I'll come pick it up right away. Now I won't die because my medication is too *!#&$# expensive!"
 
 Then everyone rides dinosaurs into the sunset, happy and healthy. It's pretty awesome.
+
+(That's the idea anyway. WE'll see if reality follows.)
