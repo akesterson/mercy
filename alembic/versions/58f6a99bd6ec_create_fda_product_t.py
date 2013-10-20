@@ -22,7 +22,7 @@ def upgrade():
         sa.Column('type', sa.String, nullable=False),
         sa.Column('proprietaryName', sa.String, nullable=False, index=True),
         sa.Column('proprietaryNameSuffix', sa.String),
-        sa.Column('genericName', sa.String, nullable=False),
+        sa.Column('genericName', sa.String, nullable=False, index=True),
         sa.Column('marketingCategoryName', sa.String, nullable=False),
         sa.Column('labelerName', sa.String, nullable=False),
         sa.Column('deaSchedule', sa.String, nullable=False)
