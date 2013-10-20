@@ -9,7 +9,7 @@ Requirements
 This puppet module assumes that you have:
 
 * A RabbitMQ broker that we can use for Celery tasks
-* Working apache on localhost with a puppet service we can notify
+* Working apache on localhost, with mod_wsgi enabled and with a puppet service we can notify
 * Working python 2.7 and pip on localhost
 * Working postgres with a username, password, and database for mercy to use
 
@@ -20,20 +20,25 @@ Usage
 
     class { 'mercy':
         # ---- These are required, they have no defaults
-        environment    => 'dev|production',
-        version        => 'absent|latest|MAJOR-MINOR',
-        ensure         => 'running|stopped'.
-        rabbitmq_uri   => 'RABBITMQ_BROKER_URI',
+        environment     => 'dev|production',
+        version         => 'absent|latest|MAJOR-MINOR',
+        ensure          => 'running|stopped'.
+        rabbitmq_uri    => 'RABBITMQ_BROKER_URI',
         # ---- Everything below is optional
-	rabbitmq_user  => 'mercy',
-	rabbitmq_pw    => 'mercy',
-	rabbitmq_vhost => 'mercy',
-        vhost_dir      => '/etc/apache/httpd/conf.d',
-        apache_service => 'httpd',
-        postgres_uri   => 'localhost',
-        postgres_user  => 'mercy',
-        postgres_pw    => 'mercy',
-        postgres_db    => 'mercy'
+	process_user    => 'mercy',
+	process_group   => 'mercy',
+	process_threads => 5,
+	servername      => $::fqdn,
+	rabbitmq_user   => 'mercy',
+	rabbitmq_pw     => 'mercy',
+	rabbitmq_vhost  => 'mercy',
+        vhost_dir       => '/etc/apache/httpd/conf.d',
+        apache_service  => 'httpd',
+	port            => 443,
+        postgres_uri    => 'localhost',
+        postgres_user   => 'mercy',
+        postgres_pw     => 'mercy',
+        postgres_db     => 'mercy'
     }
 
 If 'environment' is dev, then the mercy application will be installed via a tarball located in ./mercy/files/mercy-${ensure}.tar.gz. If 'environment' is production, then mercy will be installed via pip and ensured at the given version.

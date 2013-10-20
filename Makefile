@@ -49,7 +49,7 @@ dist: $(PYTHON_SDIST) puppet
 sdist: $(PYTHON_SDIST)
 
 mercy/version.py: version.sh
-	source version.sh && echo "VERSION=\"$${MAJOR}-$${BUILD}\"" > $@
+	bash -c 'source version.sh && echo "VERSION=\"$${MAJOR}-$${BUILD}\"" > $@'
 
 $(PYTHON_SDIST): $(PYTHON_FILES)
 	$(PYTHON) setup.py sdist --formats=gztar
@@ -67,3 +67,24 @@ virtualenv:
 	fi
 
 ################## /python app
+
+################## Targets for supporting development work
+
+databases: databases/fda_ndc.zip  databases/drugbank.xml.zip
+
+.PHONY: databases/fda_ndc.zip
+databases/fda_ndc.zip:
+	rm -fr databases/fda_ndc*
+	mkdir -p databases/fda_ndc
+	rm -f fda_ndc.zip
+	DBPAGE=$$(wget -O - http://www.fda.gov/Drugs/InformationOnDrugs/default.htm --quiet | grep -Eo 'National Drug Code Directory Search(</strong>)*(</a>)*(<br />)*<a href="[a-zA-Z0-9\:/\.]+">More information about the database</a>' | cut -d \" -f 2); \
+	LINK=$$(wget -O - http://www.fda.gov/$${DBPAGE} --quiet | grep ">NDC Database File" | cut -d \" -f 2) ; \
+	wget -O $@ http://www.fda.gov/$${LINK}
+	cd databases/fda_ndc && unzip -e ../fda_ndc.zip
+
+.PHONY: databases/drugbank.xml.zip
+databases/drugbank.xml.zip:
+	rm -fr databases/drugbank*
+	mkdir -p databases/drugbank
+	wget -O $@ http://www.drugbank.ca/system/downloads/current/drugbank.xml.zip
+	cd databases/drugbank && unzip -e ../drugbank.xml.zip
