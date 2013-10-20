@@ -24,7 +24,7 @@ def upgrade():
         sa.Column('proprietaryNameSuffix', sa.String),
         sa.Column('genericName', sa.String, nullable=False),
         sa.Column('marketingCategoryName', sa.String, nullable=False),
-        sa.Column('labelerName', sa.String, nullable=False)
+        sa.Column('labelerName', sa.String, nullable=False),
         sa.Column('deaSchedule', sa.String, nullable=False)
         )
     op.create_table(
