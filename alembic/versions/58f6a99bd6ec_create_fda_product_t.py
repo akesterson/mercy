@@ -88,4 +88,13 @@ def upgrade():
         )
 
 def downgrade():
-    pass
+    op.drop_table("drugbank_synonyms")
+    op.drop_table("drugbank_genericnames")
+    op.drop_table("drugbank_manufacturers")
+    op.drop_table("drugbank_packagers")
+    op.drop_table("drugbank_drug_categories")
+    op.drop_table("drugbank_categories")
+    op.drop_table("drugbank_prices")
+    op.drop_table("drugbank_drugs")
+    op.drop_table("fda_product_substances")
+    op.drop_table("fda_products")
