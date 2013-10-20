@@ -51,7 +51,7 @@ def upgrade():
         sa.Column('id', sa.String, ForeignKey('drugbank_drugs.id'), nullable=False),
         sa.Column('description', sa.String, nullable=False),
         sa.Column('currency', sa.String, nullable=False),
-        sa.Column('cost', sa.Float, nullable=False, index=True)
+        sa.Column('cost', sa.Float, nullable=False, index=True),
         sa.Column('unit', sa.String, nullable=False)
         )
     op.create_table(
