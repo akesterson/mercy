@@ -31,7 +31,7 @@ def upgrade():
         'fda_product_substances',
         sa.Column('fda_product_id',
                   sa.String,
-                  ForeignKey('fda_products.id'),
+                  sa.ForeignKey('fda_products.id'),
                   nullable=False),
         sa.Column('substanceName', sa.String, nullable=False),
         sa.Column('strengthNumber', sa.String, nullable=False),
@@ -43,12 +43,12 @@ def upgrade():
         sa.Column('id', sa.String, primary_key=True, unique=True),
         sa.Column('name', sa.String, nullable=False, index=True),
         sa.Column('indication', sa.String, nullable=False),
-        sa.Column('ndc_id', sa.String, ForeignKey('fda_products.id'), nullable=True),
+        sa.Column('ndc_id', sa.String, sa.ForeignKey('fda_products.id'), nullable=True),
         sa.Column('wikipedia', sa.String, nullable=True)
         )
     op.create_table(
         'drugbank_prices',
-        sa.Column('id', sa.String, ForeignKey('drugbank_drugs.id'), nullable=False),
+        sa.Column('id', sa.String, sa.ForeignKey('drugbank_drugs.id'), nullable=False),
         sa.Column('description', sa.String, nullable=False),
         sa.Column('currency', sa.String, nullable=False),
         sa.Column('cost', sa.Float, nullable=False, index=True),
@@ -61,29 +61,29 @@ def upgrade():
         )
     op.create_table(
         'drugbank_drug_categories',
-        sa.Column('id', sa.String, ForeignKey('drugbank_drugs.id'), nullable=False),
-        sa.Column('category_id', sa.Integer, ForeignKey('drugbank_categories.id'), nullable=False)
+        sa.Column('id', sa.String, sa.ForeignKey('drugbank_drugs.id'), nullable=False),
+        sa.Column('category_id', sa.Integer, sa.ForeignKey('drugbank_categories.id'), nullable=False)
         )
     op.create_table(
         'drugbank_packagers',
-        sa.Column('id', sa.String, ForeignKey('drugbank_drugs.id'), nullable=False),
+        sa.Column('id', sa.String, sa.ForeignKey('drugbank_drugs.id'), nullable=False),
         sa.Column('name', sa.String, nullable=False),
         sa.Column('url', sa.String, nullable=False)
         )
     op.create_table(
         'drugbank_manufacturers',
-        sa.Column('id', sa.String, ForeignKey('drugbank_drugs.id'), nullable=False),
+        sa.Column('id', sa.String, sa.ForeignKey('drugbank_drugs.id'), nullable=False),
         sa.Column('name', sa.String, nullable=False),
         sa.Column('generic', sa.Boolean, nullable=False)
         )
     op.create_table(
         'drugbank_genericnames',
-        sa.Column('id', sa.String, ForeignKey('drugbank_drugs.id'), nullable=False),
+        sa.Column('id', sa.String, sa.ForeignKey('drugbank_drugs.id'), nullable=False),
         sa.Column('name', sa.String, index=True, nullable=False)
         )
     op.create_table(
         'drugbank_synonyms',
-        sa.Column('id', sa.String, ForeignKey('drugbank_drugs.id'), nullable=False),
+        sa.Column('id', sa.String, sa.ForeignKey('drugbank_drugs.id'), nullable=False),
         sa.Column('name', sa.String, index=True, nullable=False)
         )
 
