@@ -1,0 +1,4 @@
+class mercy::params
+{
+
+}
