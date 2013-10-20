@@ -1,0 +1,22 @@
+"""create fda_product table
+
+Revision ID: 58f6a99bd6ec
+Revises: None
+Create Date: 2013-10-19 21:21:03.977000
+
+"""
+
+# revision identifiers, used by Alembic.
+revision = '58f6a99bd6ec'
+down_revision = None
+
+from alembic import op
+import sqlalchemy as sa
+
+
+def upgrade():
+    pass
+
+
+def downgrade():
+    pass
