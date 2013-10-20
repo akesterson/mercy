@@ -56,7 +56,7 @@ def upgrade():
         )
     op.create_table(
         'drugbank_categories',
-        sa.Column('id', sa.Integer, primary_key=true, autoincrement=True),
+        sa.Column('id', sa.Integer, primary_key=True, autoincrement=True),
         sa.Column('name', sa.String, nullable=False)
         )
     op.create_table(
