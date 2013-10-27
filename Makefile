@@ -1,13 +1,8 @@
 MAJOR:=$(shell bash -c 'source version.sh ; echo $$MAJOR')
 BUILD:=$(shell bash -c 'source version.sh ; echo $$BUILD')
 OS_NAME:=$(shell bash -c 'source version.sh ; echo $$OS_NAME')
-ifeq "$(OS_NAME)" "win"
-	PIP=$(shell pwd)/virtualenv/Scripts/pip
-	VIRTUALENV_PKGS_DIR=$(shell pwd)/virtualenv/Lib/site-packages
-else
-	PIP=$(shell pwd)/virtualenv/bin/pip
-	VIRTUALENV_PKGS_DIR=$(shell pwd)/virtualenv/lib/site-packages
-endif
+PIP=$(shell pwd)/virtualenv/bin/pip
+VIRTUALENV_PKGS_DIR=$(shell pwd)/virtualenv/lib/python2.7/site-packages
 VIRTUALENV=$(shell which virtualenv)
 PYTHON=$(shell which python)
 
