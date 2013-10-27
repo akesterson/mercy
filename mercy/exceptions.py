@@ -1,0 +1,3 @@
+class CorruptTarError(Exception):
+    pass
+
