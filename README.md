@@ -1,28 +1,31 @@
 mercy
 =====
 
-Mercy is a web application designed to facilitate payments between people who need prescriptions but can't afford them, and charitable people who can afford them
+This project comprises the entirety of The Mercy Project; everything needed to deploy and serve The Mercy Project currently lives in this repository.
 
-The Idea
-========
+If you came here looking for more information about what (in general) The Mercy Project is, please see http://www.mercyproject.us for more information
 
-* Patient: "Here's my prescription, Mr Pharmacist"
-* Pharmacist: "Sure thing. That'll be $150 USD."
-* Patient: "I can't afford that! Can you submit it to Mercy for me?"
-* Pharmacist: "Sure thing. We'll call you when it gets filled."
+Python Application
+===================
 
-... Meanwhile, back at stately Charitable Person Manor ...
+The mercy/ directory contains all of the python code used to serve the Mercy website and perform all necessary functions.
 
-* Charitable Person's Phone: *DING*
-* Charitable Person: "Huh? Oh! Mercy is telling me there's a new prescription I can pay for. I love helping people!"
-* Charitable person clicks some buttons
-* Charitable Person: "*CLICK* Paid! Enjoy some good health, stranger. Now to post it on my facebook wall and collect the new achievement for buying my first Leukemia drug..."
+Alembic ORM database upgrade scripts
+====================================
 
-... Back at the pharmacy ...
+The alembic/ directory contains scripts used by the alembic flask extension to automatically upgrade and downgrade the postgres database used by Mercy.
 
-* Pharmacist : "Hello, Patient? I just wanted to let you know that your prescription is filled and has been paid in full."
-* Patient: "That's so great! I'll come pick it up right away. Now I won't die because my medication is too *!#&$# expensive!"
+Puppet Modules for Deployment
+==============================
 
-Then everyone rides dinosaurs into the sunset, happy and healthy. It's pretty awesome.
+The puppet code necessary to deploy Mercy onto Linux servers lives in the puppet/ directory.
 
-(That's the idea anyway. WE'll see if reality follows.)
+Nagios Checks for Monitoring the Mercy Platform
+===============================================
+
+These live in the nagios/ directory.
+
+Automated Test Suites
+=====================
+
+tests/ currently holds any and all automated testing (Python Nosetests, currently) for all of the code listed above.
