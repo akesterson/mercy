@@ -18,7 +18,8 @@ class Drug(SimpleModel, db.Model):
 
     __repr_keys__ = { 'id': basestring,
                       'name': basestring,
-                      'ndc_id': basestring
+                      'fda_product_id': basestring,
+                      'wikipedia': basestring
                       }
 
 class Price(SimpleModel, db.Model):

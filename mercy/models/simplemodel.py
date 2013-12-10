@@ -20,7 +20,7 @@ class SimpleModel():
         values = []
         for (name, otype) in self.__class__.__repr_keys__.iteritems():
             if otype == basestring:
-                values += "'{}'".format(str(getattr(self.__class__, name)))
+                values.append("'{}'".format(str(getattr(self, name))))
             else:
-                values += str(getattr(self.__class__, name))
+                values.append(str(getattr(self, name)))
         return "<{}({})>".format(self.__class__.__name__, ', '.join(values))
